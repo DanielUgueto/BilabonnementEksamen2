@@ -1,4 +1,7 @@
 package com.example.bilabonnementeksamen2.models.enums;
 
 public enum BilGeartype {
+    MANUEL,
+    AUTOMATISK
+
 }

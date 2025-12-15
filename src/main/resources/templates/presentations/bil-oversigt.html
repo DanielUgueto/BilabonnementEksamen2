@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Biloversigt</title>
 </head>
 <body>
-$END$
+
+<h1>Biloversigt</h1>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Vognnummer</th>
+    <th>Mærke</th>
+    <th>Model</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="bil : ${biler}">
+    <td th:text="${bil.vognnummer}"></td>
+    <td th:text="${bil.maerke}"></td>
+    <td th:text="${bil.model}"></td>
+    <td th:text="${bil.status}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<a th:href="@{/biler/opret}">Opret ny bil</a>
+
 </body>
 </html>
