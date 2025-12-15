@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/biler/opret}" method="post" th:object="${bil}">
+    <input type="text" th:field="*{vognnummer}" placeholder="Vognnummer" required>
+    <input type="text" th:field="*{stelnummer}" placeholder="Stelnummer" required>
+    <input type="text" th:field="*{maerke}" placeholder="Mærke" required>
+    <input type="text" th:field="*{model}" placeholder="Model" required>
+    <input type="number" th:field="*{antalDoere}" placeholder="Antal døre" required>
+    <input type="number" th:field="*{antalPersoner}" placeholder="Antal personer" required>
+    <input type="text" th:field="*{farve}" placeholder="Farve">
+
+    <select th:field="*{drivstoff}" required>
+        <option value="">Vælg drivstoff</option>
+        <option th:each="d : ${drivstoff}"
+                th:value="${d}"
+                th:text="${d}">
+        </option>
+    </select>
+    <select th:field="*{geartype}" required>
+        <option value="">Vælg geartype</option>
+        <option th:each="g : ${geartype}"
+                th:value="${g}"
+                th:text="${g}">
+        </option>
+    </select>
+
+    <input type="number" th:field="*{kmTal}" placeholder="Km tal" required>
+    <input type="number" th:field="*{kmL}" placeholder="Km/L" required>
+    <input type="number" th:field="*{fabriksAar}" placeholder="Fabriksår" required>
+
+    <button type="submit">Opret bil</button>
+</form>
+
+</body>
+</html>
