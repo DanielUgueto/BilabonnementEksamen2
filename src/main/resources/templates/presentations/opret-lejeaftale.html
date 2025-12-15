@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Opret lejeaftale</title>
 </head>
 <body>
+
+<h1>Opret lejeaftale</h1>
+
 <form th:action="@{/lejeaftaler/opret}" method="post" th:object="${lejeaftale}">
 
-    <input type="number" th:field="*{kundeId}" placeholder="Kunde ID" required>
+    <input type="number" th:field="*{kundeID}" placeholder="Kunde ID" required>
 
     <input type="text" th:field="*{vognnummer}" placeholder="Vognnummer" required>
 

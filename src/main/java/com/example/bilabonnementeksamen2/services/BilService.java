@@ -55,10 +55,7 @@ public class BilService {
             throw new IllegalArgumentException("Vælg geartype");
         }
 
-        // --- Forretningslogik ---
         bil.setStatus(BilStatus.LEDIG);
-
-        // --- Persistens ---
         bilRepo.save(bil);
     }
 

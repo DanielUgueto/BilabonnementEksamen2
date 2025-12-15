@@ -12,7 +12,7 @@ public class Skadesrapport {
     private List<Skade> skader = new ArrayList<>();
 
 
-    public Skadesrapport(int rapportID, int lejeaftaleID, LocalDate dato, double totalPris) {
+    public Skadesrapport() {
         this.rapportID = rapportID;
         this.lejeaftaleID = lejeaftaleID;
         this.dato = dato;

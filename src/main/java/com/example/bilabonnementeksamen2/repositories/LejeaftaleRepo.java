@@ -1,8 +1,11 @@
 package com.example.bilabonnementeksamen2.repositories;
 
 import com.example.bilabonnementeksamen2.models.entities.Lejeaftale;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class LejeaftaleRepo {
@@ -34,4 +37,23 @@ public class LejeaftaleRepo {
                 lejeaftale.isAktiv()
         );
     }
+
+    public void afslutLejeaftale(int lejeaftaleID) {
+        String sql = """
+            UPDATE Lejeaftale
+            SET aktiv = false
+            WHERE lejeaftaleID = ?
+        """;
+        jdbcTemplate.update(sql, lejeaftaleID);
+
+    }
+
+    public List<Lejeaftale> findAll() {
+        String sql = "SELECT * FROM Lejeaftale";
+        return jdbcTemplate.query(
+                sql,
+                new BeanPropertyRowMapper<>(Lejeaftale.class)
+        );
+    }
+
 }
