@@ -19,32 +19,15 @@ public class BilRepo {
 
     public void save(Bil bil) {
         String sql = """
-            INSERT INTO Bil (
-                vognnummer, stelnummer, maerke, model,
-                antalDoere, antalPersoner, farve,
-                drivstoff, gearType, kmTal, kmL,
-                fabriksaAar, status
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """;
+                    INSERT INTO Bil (vognnummer, stelnummer, maerke, model, antalDoere, antalPersoner, farve, drivstoff, gearType, kmTal, kmL, fabriksaAar, status
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """;
 
-        jdbcTemplate.update(
-                sql,
-                bil.getVognnummer(),
-                bil.getStelnummer(),
-                bil.getMaerke(),
-                bil.getModel(),
-                bil.getAntalDoere(),
-                bil.getAntalPersoner(),
-                bil.getFarve(),
-                bil.getDrivstoff().name(),
-                bil.getGearType().name(),
-                bil.getKmTal(),
-                bil.getKmL(),
-                bil.getFabriksAar(),
-                bil.getStatus().name()
+        jdbcTemplate.update(sql, bil.getVognnummer(), bil.getStelnummer(), bil.getMaerke(), bil.getModel(), bil.getAntalDoere(), bil.getAntalPersoner(), bil.getFarve(), bil.getDrivstoff().name(), bil.getGearType().name(), bil.getKmTal(), bil.getKmL(), bil.getFabriksAar(), bil.getStatus().name()
         );
     }
+
     public boolean existsByVognnummer(String vognnummer) {
         String sql = "SELECT COUNT(*) FROM Bil WHERE vognnummer = ?";
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, vognnummer);

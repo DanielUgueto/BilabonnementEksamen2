@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Skadesrapport oversigt</title>
+</head>
+<body>
+<h1>Skadesrapport oversigt</h1>
+<form th:action="@{/skadesrapporter/afslut}" method="post">
+    <input type="hidden" name="rapportID" th:value="${rapport.rapportID}">
+    <input type="hidden" name="vognnummer" th:value="${vognnummer}">
+    <button type="submit">Afslut skadesrapport</button>
+</form>
+</body>
+</html>

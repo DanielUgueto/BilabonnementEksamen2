@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret skadesrapport</title>
+</head>
+<body>
+<h1>Opret skadesrapport</h1>
+
+<form th:action="@{/skadesrapporter/opret}" method="post" th:object="${rapport}">
+
+    <input type="hidden" th:field="*{lejeaftaleID}">
+    <input type="hidden" name="vognnummer" th:value="${vognnummer}">
+
+    <p>Opret skadesrapport</p>
+
+    <button type="submit">Opret rapport</button>
+</form>
+
+
+</body>
+</html>
