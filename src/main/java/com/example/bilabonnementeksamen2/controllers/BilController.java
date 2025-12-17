@@ -22,22 +22,28 @@ public class BilController {
     @GetMapping("/opret")
     public String visOpretBilForm(Model model) {
         model.addAttribute("bil", new Bil());
-        model.addAttribute("drivstoff", BilDrivstoff.values());
-        model.addAttribute("geartype", BilGeartype.values());
+        model.addAttribute("drivstoffer", BilDrivstoff.values());
+        model.addAttribute("geartyper", BilGeartype.values());
         return "opret-bil";
     }
-
 
     @PostMapping("/opret")
     public String opretBil(@ModelAttribute Bil bil) {
         bilService.opretBil(bil);
-        return "redirect:/biler";
+        return "redirect:/";
     }
 
-    @GetMapping
+    @GetMapping("/oversigt")
     public String visBilOversigt(Model model) {
         model.addAttribute("biler", bilService.hentAlleBiler());
         return "bil-oversigt";
     }
+
+    @GetMapping("/status-oversigt")
+    public String visAntalBilerPrStatus(Model model) {
+        model.addAttribute("statusTaelling", bilService.hentAntalBilerPrStatus());
+        return "bil-status-oversigt";
+    }
+
 
 }

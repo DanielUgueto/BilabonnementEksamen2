@@ -4,19 +4,20 @@ import com.example.bilabonnementeksamen2.models.enums.BilStatus;
 import com.example.bilabonnementeksamen2.models.enums.BilDrivstoff;
 import com.example.bilabonnementeksamen2.models.enums.BilGeartype;
 
+//nogle attributter er blevet lavet til wrappers så deres placesholders kan blive vist på hjemmesiden istedet for at være udfyldt på forhånd
 public class Bil {
     private String vognnummer;
     private String stelnummer;
     private String maerke;
     private String model;
-    private int antalDoere;
-    private int antalPersoner;
+    private Integer antalDoere;
+    private Integer antalPersoner;
     private String farve;
     private BilDrivstoff drivstoff;
     private BilGeartype geartype;
-    private int kmTal;
-    private double kmL;
-    private int fabriksAar;
+    private Integer kmTal;
+    private Double kmL;
+    private Integer fabriksAar;
     private BilStatus status;
 
     public Bil() {
@@ -64,17 +65,17 @@ public class Bil {
         this.model = model;
     }
 
-    public int getAntalDoere() {
+    public Integer getAntalDoere() {
         return antalDoere;
     }
-    public void setAntalDoere(int antalDoere) {
+    public void setAntalDoere(Integer antalDoere) {
         this.antalDoere = antalDoere;
     }
 
-    public int getAntalPersoner() {
+    public Integer getAntalPersoner() {
         return antalPersoner;
     }
-    public void setAntalPersoner(int antalPersoner) {
+    public void setAntalPersoner(Integer antalPersoner) {
         this.antalPersoner = antalPersoner;
     }
 
@@ -92,31 +93,31 @@ public class Bil {
         this.drivstoff = drivstoff;
     }
 
-    public BilGeartype getGearType() {
+    public BilGeartype getGeartype() {
         return geartype;
     }
-    public void setGearType(BilGeartype gearType) {
-        this.geartype = gearType;
+    public void setGeartype(BilGeartype geartype) {
+        this.geartype = geartype;
     }
 
-    public int getKmTal() {
+    public Integer getKmTal() {
         return kmTal;
     }
-    public void setKmTal(int kmTal) {
+    public void setKmTal(Integer kmTal) {
         this.kmTal = kmTal;
     }
 
-    public double getKmL() {
+    public Double getKmL() {
         return kmL;
     }
-    public void setKmL(double kmL) {
+    public void setKmL(Double kmL) {
         this.kmL = kmL;
     }
 
-    public int getFabriksAar() {
+    public Integer getFabriksAar() {
         return fabriksAar;
     }
-    public void setFabriksAar(int fabriksAar) {
+    public void setFabriksAar(Integer fabriksAar) {
         this.fabriksAar = fabriksAar;
     }
 

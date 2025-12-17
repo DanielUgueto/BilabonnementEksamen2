@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Antal biler pr. status</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
+<body>
+
+<h1>Antal biler pr. status</h1>
+
+<table border="1">
+    <tr>
+        <th>Status</th>
+        <th>Antal biler</th>
+    </tr>
+
+    <tr th:each="entry : ${statusTaelling}">
+        <td th:text="${entry.key}"></td>
+        <td th:text="${entry.value}"></td>
+    </tr>
+</table>
+
+<a th:href="@{/static}">Tilbage</a>
+
+</body>
+</html>

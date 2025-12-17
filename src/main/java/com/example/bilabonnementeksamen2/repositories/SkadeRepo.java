@@ -13,18 +13,21 @@ public class SkadeRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void save(Skade skade) {
-        String sql = """
-            INSERT INTO Skade (rapportID, beskrivelse, pris)
-            VALUES (?, ?, ?)
-        """;
-
-        jdbcTemplate.update(sql, skade.getRapportID(), skade.getBeskrivelse(), skade.getPris()
-        );
-    }
 
     public double sumPrisByRapportID(int rapportID) {
-        String sql = "SELECT SUM(pris) FROM Skade WHERE rapportID = ?";
+        String sql = "SELECT SUM(pris) FROM skade WHERE rapportID = ?";
         return jdbcTemplate.queryForObject(sql, Double.class, rapportID);
     }
+
+    public void save(int rapportID, String beskrivelse, double pris) {
+        String sql = """
+        INSERT INTO skade (rapportID, beskrivelse, pris)
+        VALUES (?, ?, ?)
+    """;
+
+        jdbcTemplate.update(sql, rapportID, beskrivelse, pris);
+    }
+
+
+
 }

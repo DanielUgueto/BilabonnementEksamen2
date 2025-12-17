@@ -4,6 +4,8 @@ import com.example.bilabonnementeksamen2.models.entities.Skadesrapport;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class SkadesrapportRepo {
 
@@ -15,7 +17,7 @@ public class SkadesrapportRepo {
 
     public void save(Skadesrapport rapport) {
         String sql = """
-                    INSERT INTO Skadesrapport (lejeaftaleID, dato, totalPris)
+                    INSERT INTO skadesrapport (lejeaftaleID, dato, totalPris)
                     VALUES (?, ?, ?)
                 """;
 
@@ -23,18 +25,25 @@ public class SkadesrapportRepo {
         );
     }
 
-    public void updateTotalPris(int rapportID) {
+    public void opdaterTotalPris(int rapportID, double pris) {
         String sql = """
-            UPDATE Skadesrapport
-            SET totalPris = (
-                SELECT COALESCE(SUM(pris), 0)
-                FROM Skade
-                WHERE rapportID = ?
-            )
+        UPDATE skadesrapport
+        SET totalPris = totalPris + ?
+        WHERE rapportID = ?
+    """;
+        jdbcTemplate.update(sql, pris, rapportID);
+    }
+    public void markAfsluttet(int rapportID) {
+        String sql = """
+            UPDATE skadesrapport
+            SET dato = CURDATE()
             WHERE rapportID = ?
         """;
 
-        jdbcTemplate.update(sql, rapportID, rapportID);
+        jdbcTemplate.update(sql, rapportID);
     }
 
+//
+//    public List<Skadesrapport> findKlarTilGennemgang() {
+//    }
 }

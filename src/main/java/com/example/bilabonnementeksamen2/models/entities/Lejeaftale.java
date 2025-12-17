@@ -11,7 +11,7 @@ public class Lejeaftale {
     private LocalDate startDato;
     private LocalDate slutDato;
     private LejeaftaleAbonnementstype abonnementstype;
-    private double maanedligPris;
+    private Double maanedligPris;
     private boolean aktiv;
 
 
@@ -62,17 +62,17 @@ public class Lejeaftale {
         this.slutDato = slutDato;
     }
 
-    public LejeaftaleAbonnementstype getAbonnementsType() {
+    public LejeaftaleAbonnementstype getAbonnementstype() {
         return abonnementstype;
     }
-    public void setAbonnementsType(LejeaftaleAbonnementstype abonnementsType) {
-        this.abonnementstype = abonnementsType;
+    public void setAbonnementstype(LejeaftaleAbonnementstype abonnementstype) {
+        this.abonnementstype = abonnementstype;
     }
 
-    public double getMaanedligPris() {
+    public Double getMaanedligPris() {
         return maanedligPris;
     }
-    public void setMaanedligPris(double maanedligPris) {
+    public void setMaanedligPris(Double maanedligPris) {
         this.maanedligPris = maanedligPris;
     }
 

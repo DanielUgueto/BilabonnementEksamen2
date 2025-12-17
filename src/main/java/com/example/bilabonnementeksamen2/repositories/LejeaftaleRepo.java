@@ -18,11 +18,7 @@ public class LejeaftaleRepo {
 
     public void save(Lejeaftale lejeaftale) {
         String sql = """
-            INSERT INTO Lejeaftale (
-                kundeID, vognnummer,
-                startDato, slutDato,
-                abonnementsType, maanedligPris, aktiv
-            )
+            INSERT INTO lejeaftale (kundeID, vognnummer, startDato, slutDato, abonnementstype, maanedligPris, aktiv)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """;
 
@@ -32,7 +28,7 @@ public class LejeaftaleRepo {
                 lejeaftale.getVognnummer(),
                 lejeaftale.getStartDato(),
                 lejeaftale.getSlutDato(),
-                lejeaftale.getAbonnementsType().name(),
+                lejeaftale.getAbonnementstype().name(),
                 lejeaftale.getMaanedligPris(),
                 lejeaftale.isAktiv()
         );
@@ -40,7 +36,7 @@ public class LejeaftaleRepo {
 
     public void afslutLejeaftale(int lejeaftaleID) {
         String sql = """
-            UPDATE Lejeaftale
+            UPDATE lejeaftale
             SET aktiv = false
             WHERE lejeaftaleID = ?
         """;
@@ -48,12 +44,29 @@ public class LejeaftaleRepo {
 
     }
 
+    //    BeanPropertyRowMapper bruges til at mappe matchende sql felter
+//    og lave dem til java objekter, hvor det bagefter bliver lavet en liste af Lejeaftale-objekter
     public List<Lejeaftale> findAll() {
-        String sql = "SELECT * FROM Lejeaftale";
+        String sql = "SELECT * FROM lejeaftale";
         return jdbcTemplate.query(
                 sql,
                 new BeanPropertyRowMapper<>(Lejeaftale.class)
         );
     }
 
+    //siden oplysningerne om indtægten ligger i lejeaftalen, ligger vores metode her selvom den bruger en innerjoin med bil
+    public List<Lejeaftale> findUdlejedeLejeaftaler() {
+        String sql = """
+            SELECT l.*
+            FROM lejeaftale l
+            INNER JOIN bil b ON l.vognnummer = b.vognnummer
+            WHERE b.status = 'UDLEJET'
+        """;
+
+        return jdbcTemplate.query(
+                sql,
+                new BeanPropertyRowMapper<>(Lejeaftale.class)
+        );
+
+    }
 }

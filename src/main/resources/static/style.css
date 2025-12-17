@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #f2f2f2;
+}
+
+button {
+    padding: 8px 14px;
+    border: 1px solid #333;
+    background: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #eee;
+}
+
+a {
+    text-decoration: none;
+}

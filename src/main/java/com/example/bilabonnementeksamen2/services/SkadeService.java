@@ -9,17 +9,15 @@ import org.springframework.stereotype.Service;
 public class SkadeService {
 
     private final SkadeRepo skadeRepo;
-    private final SkadesrapportRepo skadesrapportRepo;
+    private final SkadesrapportRepo rapportRepo;
 
-    public SkadeService(SkadeRepo skadeRepo, SkadesrapportRepo skadesrapportRepo) {
+    public SkadeService(SkadeRepo skadeRepo, SkadesrapportRepo rapportRepo) {
         this.skadeRepo = skadeRepo;
-        this.skadesrapportRepo = skadesrapportRepo;
+        this.rapportRepo = rapportRepo;
     }
 
-    public void registrerSkade(Skade skade) {
-        skadeRepo.save(skade);
-//        double totalPris = skadesrapportRepo.updateTotalPris(skade.getRapportID());
-        skadesrapportRepo.updateTotalPris(skade.getRapportID());
+    public void opretSkade(int rapportID, String beskrivelse, double pris) {
+        skadeRepo.save(rapportID, beskrivelse, pris);
+        rapportRepo.opdaterTotalPris(rapportID, pris);
     }
-
 }

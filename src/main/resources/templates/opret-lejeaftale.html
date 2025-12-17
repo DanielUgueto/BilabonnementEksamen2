@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret lejeaftale</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
+<body>
+
+<h1>Opret lejeaftale</h1>
+
+<form th:action="@{/lejeaftaler/opret}" method="post" th:object="${lejeaftale}">
+
+    <input type="number" th:field="*{kundeID}" placeholder="Kunde ID" required>
+
+    <input type="text" th:field="*{vognnummer}" placeholder="Vognnummer" required>
+
+    <input type="date" th:field="*{startDato}" required>
+    <input type="date" th:field="*{slutDato}" required>
+
+    <select th:field="*{abonnementstype}" required>
+        <option value="">Vælg abonnement</option>
+        <option th:each="a : ${abonnementstyper}"
+                th:value="${a}"
+                th:text="${a}">
+        </option>
+    </select>
+
+    <input type="number" step="0.01" th:field="*{maanedligPris}" placeholder="Pris pr. måned" required>
+
+    <button type="submit">Opret lejeaftale</button>
+</form>
+
+<h2>Ledige biler</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Vognnummer</th>
+        <th>Mærke</th>
+        <th>Model</th>
+        <th>Antal Døre</th>
+        <th>Antal Personer</th>
+        <th>Farve</th>
+        <th>Drivstoff</th>
+        <th>Geartype</th>
+        <th>Km tal</th>
+        <th>Km/L</th>
+        <th>Fabriksår</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bil : ${biler}">
+        <td th:text="${bil.vognnummer}"></td>
+        <td th:text="${bil.maerke}"></td>
+        <td th:text="${bil.model}"></td>
+        <td th:text="${bil.antalDoere}"></td>
+        <td th:text="${bil.antalPersoner}"></td>
+        <td th:text="${bil.farve}"></td>
+        <td th:text="${bil.drivstoff}"></td>
+        <td th:text="${bil.geartype}"></td>
+        <td th:text="${bil.kmTal}"></td>
+        <td th:text="${bil.kmL}"></td>
+        <td th:text="${bil.fabriksAar}"></td>
+        <td th:text="${bil.status}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

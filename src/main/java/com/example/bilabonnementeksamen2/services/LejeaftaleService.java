@@ -6,6 +6,7 @@ import com.example.bilabonnementeksamen2.repositories.BilRepo;
 import com.example.bilabonnementeksamen2.repositories.LejeaftaleRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -24,13 +25,26 @@ public class LejeaftaleService {
         bilRepo.updateStatus(lejeaftale.getVognnummer(), BilStatus.UDLEJET);
     }
 
-    public void afslutLejeaftale(int lejeaftaleID, String vognnummer) {
+    public void afslutLejeaftale(Integer lejeaftaleID, String vognnummer) {
         lejeaftaleRepo.afslutLejeaftale(lejeaftaleID);
         bilRepo.updateStatus(vognnummer, BilStatus.KLAR_TIL_GENNEMGANG);
     }
 
     public List<Lejeaftale> findAll() {
         return lejeaftaleRepo.findAll();
+    }
+
+    public double beregnSamletIndtaegt(LocalDate fra, LocalDate til) {
+        List<Lejeaftale> aftaler = lejeaftaleRepo.findUdlejedeLejeaftaler();
+        double total = 0;
+        for (Lejeaftale aftale : aftaler) {
+            if (!aftale.getStartDato().isAfter(til)
+                    && !aftale.getSlutDato().isBefore(fra)) {
+
+                total += aftale.getMaanedligPris();
+            }
+        }
+        return total;
     }
 
 

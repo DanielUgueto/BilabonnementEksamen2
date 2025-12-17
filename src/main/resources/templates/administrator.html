@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Administrator</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
+<body>
+
+<h1>Administrator panel</h1>
+
+<ul>
+  <li><a th:href="@{/biler/opret}">Opret bil</a></li>
+  <li><a th:href="@{/biler/status-oversigt}">Se biler pr. status</a></li>
+  <li><a th:href="@{/biler/oversigt}">Se ledige biler</a></li>
+  <li><a th:href="@{/kunder/opret}">Opret kunde</a></li>
+  <li><a th:href="@{/kunder/oversigt}">Se liste af kunder</a></li>
+  <li><a th:href="@{/lejeaftaler/opret}">Opret lejeaftale</a></li>
+  <li><a th:href="@{/lejeaftaler/aktive-aftaler}">Se aktive lejeaftaler</a></li>
+</ul>
+
+<!--mine controller metoder-->
+<!--@GetMapping("/bil-oversigt")-->
+<!--public String visBilOversigt(Model model) {-->
+<!--model.addAttribute("biler", bilService.hentAlleBiler());-->
+<!--return "bil-oversigt";-->
+<!--}-->
+
+<!--@GetMapping("/status-oversigt")-->
+<!--public String visAntalBilerPrStatus(Model model) {-->
+<!--model.addAttribute("statusTaelling", bilService.hentAntalBilerPrStatus());-->
+<!--return "bil-status-oversigt";-->
+<!--}-->
+
+</body>
+</html>
+
+

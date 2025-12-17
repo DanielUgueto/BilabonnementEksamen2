@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kundeoversigt</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
+<body>
+
+<h1>Kundeoversigt</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Navn</th>
+        <th>Adresse</th>
+        <th>Email</th>
+        <th>Telefon</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kunde : ${kunder}">
+        <td th:text="${kunde.kundeID}"></td>
+        <td th:text="${kunde.navn}"></td>
+        <td th:text="${kunde.adresse}"></td>
+        <td th:text="${kunde.email}"></td>
+        <td th:text="${kunde.telefon}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

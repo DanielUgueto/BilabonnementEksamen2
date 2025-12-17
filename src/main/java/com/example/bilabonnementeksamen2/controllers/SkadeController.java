@@ -16,17 +16,9 @@ public class SkadeController {
         this.skadeService = skadeService;
     }
 
-    @GetMapping("/opret")
-    public String visForm(@RequestParam int rapportID, Model model) {
-        Skade skade = new Skade();
-        skade.setRapportID(rapportID);
-        model.addAttribute("skade", skade);
-        return "opret-skade";
-    }
-
     @PostMapping("/opret")
-    public String opretSkade(@ModelAttribute Skade skade) {
-        skadeService.registrerSkade(skade);
-        return "redirect:/skadesrapporter";
+    public String opretSkade(@RequestParam int rapportID, @RequestParam String beskrivelse, @RequestParam double pris) {
+        skadeService.opretSkade(rapportID, beskrivelse, pris);
+        return "redirect:/skadesrapporter/rediger?lejeaftaleID=" + rapportID;
     }
 }

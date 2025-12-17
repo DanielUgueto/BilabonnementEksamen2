@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret bil</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+
 </head>
 <body>
 
@@ -19,14 +21,14 @@
 
     <select th:field="*{drivstoff}" required>
         <option value="">Vælg drivstoff</option>
-        <option th:each="d : ${drivstoff}"
+        <option th:each="d : ${drivstoffer}"
                 th:value="${d}"
                 th:text="${d}">
         </option>
     </select>
     <select th:field="*{geartype}" required>
         <option value="">Vælg geartype</option>
-        <option th:each="g : ${geartype}"
+        <option th:each="g : ${geartyper}"
                 th:value="${g}"
                 th:text="${g}">
         </option>

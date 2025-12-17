@@ -2,7 +2,7 @@ package com.example.bilabonnementeksamen2.models.entities;
 
 public class Kunde {
     private int kundeID;
-    private int koerekortNummer;
+    private Integer koerekortNummer;
     private String cprNummer;
     private String navn;
     private String adresse;
@@ -10,7 +10,7 @@ public class Kunde {
     private String email;
 
 
-    public Kunde(int kundeID, int koerekortNummer, String cprNummer, String navn, String adresse, String telefon, String email) {
+    public Kunde() {
         this.kundeID = kundeID;
         this.koerekortNummer = koerekortNummer;
         this.cprNummer = cprNummer;
@@ -27,10 +27,10 @@ public class Kunde {
         this.kundeID = kundeID;
     }
 
-    public int getKoerekortNummer() {
+    public Integer getKoerekortNummer() {
         return koerekortNummer;
     }
-    public void setKoerekortNummer(int koerekortNummer) {
+    public void setKoerekortNummer(Integer koerekortNummer) {
         this.koerekortNummer = koerekortNummer;
     }
 

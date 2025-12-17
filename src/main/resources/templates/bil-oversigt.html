@@ -3,17 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Bil oversigt</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+
 </head>
 <body>
 
 <h1>Bil oversigt</h1>
 
-<table>
+<table border="1">
   <thead>
   <tr>
     <th>Vognnummer</th>
     <th>Mærke</th>
     <th>Model</th>
+    <th>Antal Døre</th>
+    <th>Antal Personer</th>
+    <th>Farve</th>
+    <th>Drivstoff</th>
+    <th>Geartype</th>
+    <th>Km tal</th>
+    <th>Km/L</th>
+    <th>Fabriksår</th>
     <th>Status</th>
   </tr>
   </thead>
@@ -22,6 +32,14 @@
     <td th:text="${bil.vognnummer}"></td>
     <td th:text="${bil.maerke}"></td>
     <td th:text="${bil.model}"></td>
+    <td th:text="${bil.antalDoere}"></td>
+    <td th:text="${bil.antalPersoner}"></td>
+    <td th:text="${bil.farve}"></td>
+    <td th:text="${bil.drivstoff}"></td>
+    <td th:text="${bil.geartype}"></td>
+    <td th:text="${bil.kmTal}"></td>
+    <td th:text="${bil.kmL}"></td>
+    <td th:text="${bil.fabriksAar}"></td>
     <td th:text="${bil.status}"></td>
   </tr>
   </tbody>

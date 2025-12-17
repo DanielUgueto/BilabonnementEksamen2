@@ -19,29 +19,28 @@ public class BilRepo {
 
     public void save(Bil bil) {
         String sql = """
-                    INSERT INTO Bil (vognnummer, stelnummer, maerke, model, antalDoere, antalPersoner, farve, drivstoff, gearType, kmTal, kmL, fabriksaAar, status
-                    )
+                    INSERT INTO bil (vognnummer, stelnummer, maerke, model, antalDoere, antalPersoner, farve, drivstoff, geartype, kmTal, kmL, fabriksAar, status)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
-        jdbcTemplate.update(sql, bil.getVognnummer(), bil.getStelnummer(), bil.getMaerke(), bil.getModel(), bil.getAntalDoere(), bil.getAntalPersoner(), bil.getFarve(), bil.getDrivstoff().name(), bil.getGearType().name(), bil.getKmTal(), bil.getKmL(), bil.getFabriksAar(), bil.getStatus().name()
+        jdbcTemplate.update(sql, bil.getVognnummer(), bil.getStelnummer(), bil.getMaerke(), bil.getModel(), bil.getAntalDoere(), bil.getAntalPersoner(), bil.getFarve(), bil.getDrivstoff().name(), bil.getGeartype().name(), bil.getKmTal(), bil.getKmL(), bil.getFabriksAar(), bil.getStatus().name()
         );
     }
 
     public boolean existsByVognnummer(String vognnummer) {
-        String sql = "SELECT COUNT(*) FROM Bil WHERE vognnummer = ?";
+        String sql = "SELECT COUNT(*) FROM bil WHERE vognnummer = ?";
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, vognnummer);
         return count != null && count > 0;
     }
 
     public boolean existsByStelnummer(String stelnummer) {
-        String sql = "SELECT COUNT(*) FROM Bil WHERE stelnummer = ?";
+        String sql = "SELECT COUNT(*) FROM bil WHERE stelnummer = ?";
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, stelnummer);
         return count != null && count > 0;
     }
 
     public List<Bil> findAll() {
-        String sql = "SELECT * FROM Bil";
+        String sql = "SELECT * FROM bil";
         return jdbcTemplate.query(
                 sql,
                 new BeanPropertyRowMapper<>(Bil.class)
@@ -49,8 +48,13 @@ public class BilRepo {
     }
 
     public void updateStatus(String vognnummer, BilStatus status) {
-        String sql = "UPDATE Bil SET status = ? WHERE vognnummer = ?";
+        String sql = "UPDATE bil SET status = ? WHERE vognnummer = ?";
         jdbcTemplate.update(sql, status.name(), vognnummer);
+    }
+
+    public int findByStatus(String status) {
+        String sql = "SELECT COUNT(*) FROM bil WHERE status = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, status);
     }
 
 

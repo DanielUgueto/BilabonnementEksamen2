@@ -5,7 +5,9 @@ import com.example.bilabonnementeksamen2.models.enums.BilStatus;
 import com.example.bilabonnementeksamen2.repositories.BilRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BilService {
@@ -17,7 +19,6 @@ public class BilService {
     }
 
     public void opretBil(Bil bil) {
-
 
         if (bil.getVognnummer() == null || bil.getVognnummer().isBlank()) {
             throw new IllegalArgumentException("Indtast vognnummer");
@@ -51,7 +52,7 @@ public class BilService {
             throw new IllegalArgumentException("Vælg drivstoff");
         }
 
-        if (bil.getGearType() == null) {
+        if (bil.getGeartype() == null) {
             throw new IllegalArgumentException("Vælg geartype");
         }
 
@@ -63,5 +64,14 @@ public class BilService {
         return bilRepo.findAll();
     }
 
+    public Map<String, Integer> hentAntalBilerPrStatus() {
+        Map<String, Integer> result = new HashMap<>();
+
+        for (BilStatus status : BilStatus.values()) {
+            int count = bilRepo.findByStatus(status.name());
+            result.put(status.name(), count);
+        }
+        return result;
+    }
 
 }
